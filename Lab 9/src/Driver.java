@@ -51,6 +51,7 @@ public class Driver extends Application
 		}
 		
 		myPane =  new FlowPane();
+		myPane.setPrefWrapLength(500);
 		myPlayer = new ImageView(new Image("file:src/redcircle.png"));
 		
 		mazeScanner = new Scanner(selectedMaze);
@@ -63,7 +64,7 @@ public class Driver extends Application
 		while (mazeScanner.hasNextLine())
 		{			
 			row = mazeScanner.nextLine();
-			line = row.split(" ");
+			line = row.split("\\s+");
 			
 			for (int i = 0; i < line.length; i++)
 			{
@@ -88,13 +89,14 @@ public class Driver extends Application
 				}
 				x += 50;
 			}
+			System.out.println("\n");
 			x = 0;
 			y += 50;
 		}
 		
 		
 		myGroup = new Group(myPane);
-		myScene = new Scene(myGroup, psb.getWidth() *.9, psb.getHeight() * .9);
+		myScene = new Scene(myGroup, 500, 250);
 		
 		primaryStage.setTitle("Maze");
 		primaryStage.setScene(myScene);
