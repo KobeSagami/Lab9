@@ -30,6 +30,9 @@ public class Driver extends Application
 	ImageView wall;
 	Rectangle blankWall;
 	
+	String row;
+	String[] line;
+	
 	public static void main(String[] args)
 	{
 		launch(args);
@@ -38,6 +41,7 @@ public class Driver extends Application
 	@Override
 	public void start(Stage primaryStage) throws Exception
 	{
+		// This selects which maze will be displayed randomly.
 		r = new Random();
 		randomNumber = r.nextInt(2);
 		switch(randomNumber)
@@ -50,16 +54,15 @@ public class Driver extends Application
 			break;
 		}
 		
+		// Creating the pane for the walls to go in.
 		myPane =  new FlowPane();
-		myPane.setPrefWrapLength(500);
 		myPlayer = new ImageView(new Image("file:src/redcircle.png"));
 		
+		// Iterates through the text file and creates either a wall or a black rectangle.
 		mazeScanner = new Scanner(selectedMaze);
 		
 		int x = 0;
 		int y = 0;
-		String row;
-		String[] line;
 		
 		while (mazeScanner.hasNextLine())
 		{			
@@ -93,10 +96,12 @@ public class Driver extends Application
 			x = 0;
 			y += 50;
 		}
-		
-		
+		// Dynamically changes the wrapping depending on length of line in the maze.
+		myPane.setPrefWrapLength(line.length * 50);
+
+		// Grouping, Scene, and Stage
 		myGroup = new Group(myPane);
-		myScene = new Scene(myGroup, 500, 250);
+		myScene = new Scene(myGroup, line.length * 50, y);
 		
 		primaryStage.setTitle("Maze");
 		primaryStage.setScene(myScene);
