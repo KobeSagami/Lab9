@@ -6,6 +6,7 @@ import javafx.application.Application;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
@@ -28,7 +29,14 @@ public class Driver extends Application
 	Random r;
 	
 	FlowPane myPane;
-	ImageView myPlayer;
+	
+	Image coinImage;
+	Coin coin;
+	Image playerImage;
+	Player myPlayer;
+	Label scoreLabel;
+	int score;
+	
 	ImageView wall;
 	Rectangle blankWall;
 	
@@ -58,7 +66,6 @@ public class Driver extends Application
 		
 		// Creating the pane for the walls to go in.
 		myPane =  new FlowPane();
-		myPlayer = new ImageView(new Image("file:src/redcircle.png"));
 		
 		// Iterates through the text file and creates either a wall or a black rectangle.
 		mazeScanner = new Scanner(selectedMaze);
@@ -104,6 +111,26 @@ public class Driver extends Application
 		// Grouping, Scene, and Stage
 		myGroup = new Group(myPane);
 		myScene = new Scene(myGroup, line.length * 50, y);
+		
+		scoreLabel = new Label("Score: ");
+		score = 0;
+		
+		coinImage =  new Image("file:src/coin.png");
+		coin = new Coin(myScene, coinImage, primaryStage);
+		
+		playerImage = new Image("file:src/redcircle.png");
+		myPlayer = new Player(myScene, playerImage, primaryStage, coin, score, scoreLabel);
+		if (randomNumber == 0)
+		{
+			myPlayer.getImgView().relocate(0, 100);
+		}
+		else
+		{
+			myPlayer.getImgView().relocate(200, 0);
+		}
+		
+		myPlayer.playermove();
+		myGroup.getChildren().addAll(myPlayer.getImgView());
 		
 		primaryStage.setTitle("Maze");
 		primaryStage.setScene(myScene);

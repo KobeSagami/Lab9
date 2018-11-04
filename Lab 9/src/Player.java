@@ -19,11 +19,18 @@ public class Player
 		this.stage = stage;
 		this.primaryScene = primaryScene;
 		this.imgView = new ImageView(inputImage);
+		imgView.setFitHeight(50);
+		imgView.setFitWidth(50);
 		this.coin = coin;
 		this.scoreLabel=scoreLabel;
 		this.score = score;
 	}
 	
+	
+	public ImageView getImgView()
+	{
+		return imgView;
+	}
 	
 	public void playermove()
 	{
@@ -35,20 +42,19 @@ public class Player
 		switch(movement.getCode())
 		{
 			case D:
-				imgView.setLayoutX(imgView.getLayoutX() + 10);
-				
+				imgView.setLayoutX(imgView.getLayoutX() + 50);
 				//currentScore.setText("Current Score: " + addScore.playerScore());
 				break;
 			case A:
-				imgView.setLayoutX(imgView.getLayoutX() - 10);
+				imgView.setLayoutX(imgView.getLayoutX() - 50);
 				//currentScore.setText("Current Score: " + addScore.playerScore());
 				break;
 			case W:
-				imgView.setLayoutY(imgView.getLayoutY() - 10);
+				imgView.setLayoutY(imgView.getLayoutY() - 50);
 				//currentScore.setText("Current Score: " + addScore.playerScore());
 				break;
 			case S:
-				imgView.setLayoutY(imgView.getLayoutY() + 10);
+				imgView.setLayoutY(imgView.getLayoutY() + 50);
 				//currentScore.setText("Current Score: " + addScore.playerScore());
 				break;
 			default:
