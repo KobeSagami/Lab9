@@ -31,7 +31,7 @@ public class Driver extends Application
 	FlowPane myPane;
 	
 	Image coinImage;
-	Coin coin;
+	Coin myCoin;
 	Image playerImage;
 	Player myPlayer;
 	Label scoreLabel;
@@ -53,6 +53,9 @@ public class Driver extends Application
 	@Override
 	public void start(Stage primaryStage) throws Exception
 	{
+		// Creating the pane for the walls to go in.
+		myPane =  new FlowPane();
+
 		// This selects which maze will be displayed randomly.
 		r = new Random();
 		randomNumber = r.nextInt(2);
@@ -65,10 +68,7 @@ public class Driver extends Application
 			selectedMaze = new File("./src/Documents/Maze2.txt");
 			break;
 		}
-		
-		// Creating the pane for the walls to go in.
-		myPane =  new FlowPane();
-		
+				
 		// Iterates through the text file and creates either a wall or a black rectangle.
 		mazeScanner = new Scanner(selectedMaze);
 		
@@ -120,12 +120,9 @@ public class Driver extends Application
 		
 		scoreLabel = new Label("Score: ");
 		score = 0;
-		
-		coinImage =  new Image("file:src/coin.png");
-		coin = new Coin(myScene, coinImage, primaryStage);
-		
+				
 		playerImage = new Image("file:src/redcircle.png");
-		myPlayer = new Player(myScene, playerImage, primaryStage, coin, score, scoreLabel);
+		myPlayer = new Player(myScene, playerImage, primaryStage, myCoin, score, scoreLabel);
 		if (randomNumber == 0)
 		{
 			myPlayer.getImgView().relocate(0, 100);
