@@ -36,7 +36,9 @@ public class Driver extends Application
 	Player myPlayer;
 	Label scoreLabel;
 	int score;
-	
+	boolean move;
+	double playerX;
+	double playerY;
 	ImageView wall;
 	Rectangle blankWall;
 	
@@ -89,6 +91,8 @@ public class Driver extends Application
 					wall.setX(x);
 					wall.setY(y);
 					myPane.getChildren().add(wall);
+					move=true;
+					
 				}
 				else if (token.equals("0"))
 				{
@@ -98,6 +102,8 @@ public class Driver extends Application
 					blankWall.setX(x);
 					blankWall.setY(y);
 					myPane.getChildren().add(blankWall);
+					
+					
 				}
 				x += 50;
 			}
@@ -129,12 +135,37 @@ public class Driver extends Application
 			myPlayer.getImgView().relocate(200, 0);
 		}
 		
-		myPlayer.playermove();
-		myGroup.getChildren().addAll(myPlayer.getImgView());
+	
 		
+		playerX= myPlayer.playerGetX();
+		playerY=myPlayer.playerGetY();
+		 
+		myGroup.getChildren().addAll(myPlayer.getImgView());
+		movement();
 		primaryStage.setTitle("Maze");
 		primaryStage.setScene(myScene);
 		primaryStage.show();
 	}
 
+
+
+
+private void movement(){
+	
+	if(move == true){
+		
+		myPlayer.playermove();
+		
+		
+	}
+	else {
+		playerX+=0;
+		playerY+=0;
+		
+		
+	}
+	
+	
 }
+}
+
