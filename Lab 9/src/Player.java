@@ -37,6 +37,15 @@ public class Player
 		primaryScene.setOnKeyPressed(this::move);
 	}
 	
+	public double playerGetX() {
+		
+		return imgView.getLayoutX();
+	}
+	public double playerGetY() {
+		
+		return imgView.getLayoutY();
+	}
+	
 	public void move(KeyEvent movement)
 	{
 		switch(movement.getCode())
@@ -61,4 +70,7 @@ public class Player
 				break;
 		}
 	}
+	
+	
 }
+
