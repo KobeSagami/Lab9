@@ -5,7 +5,7 @@ public class Coin {
 	private ImageView imgView;
 
 	
-	public Coin()
+	public Coin(Image imputImage)
 	{
 		
 		this.imgView = new ImageView(new Image("file:src/coin.png"));
