@@ -122,6 +122,8 @@ public class Driver extends Application
 		score = 0;
 				
 		playerImage = new Image("file:src/redcircle.png");
+		coinImage = new Image("file:src/coin.png");
+		myCoin = new Coin(coinImage);
 		myPlayer = new Player(myScene, playerImage, primaryStage, myCoin, score, scoreLabel);
 		if (randomNumber == 0)
 		{
@@ -137,7 +139,7 @@ public class Driver extends Application
 		playerX= myPlayer.playerGetX();
 		playerY=myPlayer.playerGetY();
 		 
-		myGroup.getChildren().addAll(myPlayer.getImgView());
+		myGroup.getChildren().addAll(myPlayer.getImgView(),myCoin.getImgView());
 		movement();
 		primaryStage.setTitle("Maze");
 		primaryStage.setScene(myScene);
