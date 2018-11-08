@@ -128,10 +128,12 @@ public class Driver extends Application
 		if (randomNumber == 0)
 		{
 			myPlayer.getImgView().relocate(0, 100);
+			myCoin.getImgView().relocate(365,65);
 		}
 		else
 		{
 			myPlayer.getImgView().relocate(200, 0);
+			myCoin.getImgView().relocate(65,110);
 		}
 		
 	
