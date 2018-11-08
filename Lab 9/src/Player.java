@@ -85,8 +85,8 @@ public class Player
 			System.out.println("here");
 			score+=1;
 			scoreLabel.setText("Score: " + score);
-			r = new Random();
-			coin.getImgView().relocate(psb.getWidth() * r.nextDouble(), r.nextDouble());
+			
+			coin.getImgView().relocate(psb.getWidth() * 300, 300);
 		}
 	}
 		
