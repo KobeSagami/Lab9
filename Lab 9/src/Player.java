@@ -86,7 +86,7 @@ public class Player
 			score+=1;
 			scoreLabel.setText("Score: " + score);
 			
-			coin.getImgView().relocate(psb.getWidth() * 300, 300);
+			coin.getImgView().setVisible(false);
 		}
 	}
 		
