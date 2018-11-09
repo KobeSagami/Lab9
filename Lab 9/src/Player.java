@@ -59,6 +59,11 @@ public class Player
 		return imgView.getLayoutY();
 	}
 	
+	public int playerScore()
+	{
+		return score;
+	}
+	
 	public boolean areRectsColliding(double r1TopLeftX, double
 			r1BottomRightX,double r1TopLeftY, double r1BottomRightY, double
 			r2TopLeftX,double r2BottomRightX, double r2TopLeftY, double
@@ -88,10 +93,8 @@ public class Player
 				coin.getImgView().getLayoutY() + 25)
 				== true)
 		{	
-			System.out.println("here");
 			score+=1;
 			scoreLabel.setText("Score: " + score);
-			
 			coin.getImgView().setVisible(false);
 		}
 	}

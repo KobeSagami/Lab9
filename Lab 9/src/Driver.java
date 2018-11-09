@@ -10,6 +10,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
@@ -44,7 +45,7 @@ public class Driver extends Application
 	
 	String row;
 	String[] line;
-	
+		
 	public static void main(String[] args)
 	{
 		launch(args);
@@ -53,6 +54,9 @@ public class Driver extends Application
 	@Override
 	public void start(Stage primaryStage) throws Exception
 	{
+		scoreLabel = new Label("Score: ");
+		score = 0;
+		
 		// Creating the pane for the walls to go in.
 		myPane =  new FlowPane();
 
@@ -126,6 +130,8 @@ public class Driver extends Application
 		myCoin = new Coin(coinImage);
 		gameEnder = new GameEnder();
 		myPlayer = new Player(myScene, playerImage, primaryStage, myCoin, score, scoreLabel, gameEnder);
+		score = myPlayer.playerScore();
+
 		if (randomNumber == 0)
 		{
 			myPlayer.getImgView().relocate(0, 100);
@@ -144,7 +150,10 @@ public class Driver extends Application
 		playerX = myPlayer.playerGetX();
 		playerY = myPlayer.playerGetY();
 		 
-		myGroup.getChildren().addAll(myPlayer.getImgView(),myCoin.getImgView());
+		myGroup.getChildren().addAll(myPlayer.getImgView(),myCoin.getImgView(), scoreLabel);
+		scoreLabel.setText("Score: " + score);	
+		scoreLabel.setTextFill(Color.AQUA);
+
 		movement();
 		primaryStage.setTitle("Maze");
 		primaryStage.setScene(myScene);
