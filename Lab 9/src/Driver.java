@@ -10,7 +10,6 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.GridPane;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
@@ -41,6 +40,7 @@ public class Driver extends Application
 	double playerY;
 	ImageView wall;
 	Rectangle blankWall;
+	GameEnder gameEnder;
 	
 	String row;
 	String[] line;
@@ -124,16 +124,19 @@ public class Driver extends Application
 		playerImage = new Image("file:src/redcircle.png");
 		coinImage = new Image("file:src/coin.png");
 		myCoin = new Coin(coinImage);
-		myPlayer = new Player(myScene, playerImage, primaryStage, myCoin, score, scoreLabel);
+		gameEnder = new GameEnder();
+		myPlayer = new Player(myScene, playerImage, primaryStage, myCoin, score, scoreLabel, gameEnder);
 		if (randomNumber == 0)
 		{
 			myPlayer.getImgView().relocate(0, 100);
 			myCoin.getImgView().relocate(365,65);
+			gameEnder.getRectangle().relocate(450, 50);
 		}
 		else
 		{
 			myPlayer.getImgView().relocate(200, 0);
 			myCoin.getImgView().relocate(65,110);
+			gameEnder.getRectangle().relocate(200, 200);
 		}
 		
 	
@@ -151,7 +154,6 @@ public class Driver extends Application
 
 	private void movement()
 	{
-		
 		if(move == true)
 		{
 			myPlayer.playermove();

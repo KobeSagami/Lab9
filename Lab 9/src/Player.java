@@ -1,11 +1,13 @@
 import java.util.Random;
 
 import javafx.geometry.Rectangle2D;
+import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.text.Text;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 
@@ -17,11 +19,14 @@ public class Player
 	private Scene primaryScene;
 	private ImageView imgView;
 	private Coin coin;
+	private GameEnder gameEnder;
+	private Text myText;
+	private Group myGroup;
 	
 	private Rectangle2D psb = Screen.getPrimary().getVisualBounds();
 	private Random r;
 	
-	public Player(Scene primaryScene, Image inputImage, Stage stage, Coin coin, int score, Label scoreLabel)
+	public Player(Scene primaryScene, Image inputImage, Stage stage, Coin coin, int score, Label scoreLabel, GameEnder gameEnder)
 	{
 		this.stage = stage;
 		this.primaryScene = primaryScene;
@@ -31,6 +36,7 @@ public class Player
 		this.coin = coin;
 		this.scoreLabel=scoreLabel;
 		this.score = score;
+		this.gameEnder = gameEnder;
 	}
 	
 	
@@ -89,6 +95,25 @@ public class Player
 			coin.getImgView().setVisible(false);
 		}
 	}
+	
+	public void gameover() 
+	{
+		if (areRectsColliding(playerGetX(),
+				playerGetX() + 50,
+				playerGetY(),
+				playerGetY() + 50,
+				gameEnder.getRectangle().getLayoutX(),
+				gameEnder.getRectangle().getLayoutX() + 25,
+				gameEnder.getRectangle().getLayoutY(),
+				gameEnder.getRectangle().getLayoutY() + 25)
+				== true)
+		{	
+			myText = new Text(90, 30,"Game Over");
+			myGroup = new Group(myText);
+			Scene gameOverScene = new Scene(myGroup, 250, 50);
+			stage.setScene(gameOverScene);
+		}
+	}
 		
 	public void move(KeyEvent movement)
 	{
@@ -114,6 +139,7 @@ public class Player
 				break;
 		}
 		collect();
+		gameover();
 	}
 }
 
