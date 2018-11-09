@@ -138,8 +138,8 @@ public class Driver extends Application
 		
 	
 		
-		playerX= myPlayer.playerGetX();
-		playerY=myPlayer.playerGetY();
+		playerX = myPlayer.playerGetX();
+		playerY = myPlayer.playerGetY();
 		 
 		myGroup.getChildren().addAll(myPlayer.getImgView(),myCoin.getImgView());
 		movement();
@@ -149,24 +149,18 @@ public class Driver extends Application
 	}
 
 
-
-
-private void movement(){
-	
-	if(move == true){
+	private void movement()
+	{
 		
-		myPlayer.playermove();
-		
-		
+		if(move == true)
+		{
+			myPlayer.playermove();
+		}
+		else 
+		{
+			playerX += 0;
+			playerY += 0;
+		}
 	}
-	else {
-		playerX+=0;
-		playerY+=0;
-		
-		
-	}
-	
-	
-}
 }
 
